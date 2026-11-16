@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Yönetim Paneli | Zaman Makinesi</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- PIN Overlay (sadece PIN tanımlıysa açılır) -->
+  <div id="pinOverlay" class="pin-overlay" hidden>
+    <div class="pin-box">
+      <h2>🔒 Yönetim Paneli</h2>
+      <p class="hint" style="margin-bottom:14px;">Devam etmek için PIN kodunu gir.</p>
+      <div class="field">
+        <input id="pinInput" type="password" placeholder="PIN..." autocomplete="off">
+      </div>
+      <p id="pinError" class="hint" style="color:#fca5a5; margin-bottom:10px;" hidden>Hatalı PIN, tekrar dene.</p>
+      <button id="pinUnlockBtn" class="btn btn-primary" style="width:100%;" type="button">Giriş Yap</button>
+    </div>
+  </div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">⏳</div>
+      <div>
+        <h1>Zaman Makinesi Paneli</h1>
+        <span>Sayfa, Date, Fotoğraf, Müzik &amp; QR Yönetimi</span>
+      </div>
+    </div>
+
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="pages" type="button">📖 Sayfalar &amp; Date</button>
+      <button class="tab-btn" data-tab="tracks" type="button">🎵 Müzikler</button>
+      <button class="tab-btn" data-tab="settings" type="button">⏳ Zaman Makinesi</button>
+      <button class="tab-btn" data-tab="qr" type="button">🔳 QR &amp; Yayınla</button>
+    </nav>
+
+    <div class="top-actions">
+      <span id="saveBadge" class="save-badge">✓ Hazır</span>
+      <button id="openFullPreviewBtn" class="btn btn-primary btn-sm" type="button">▶ Tam Ekran Dene</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <!-- Sol / Ana Alan -->
+    <section>
+      <!-- TAB 1: Sayfalar -->
+      <div id="tab-pages" class="tab-panel">
+        <div class="pages-layout">
+          <aside class="card">
+            <div class="card-title">
+              <span>Sayfa Sırası</span>
+            </div>
+            <div id="pageList" class="page-list"></div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <button id="addMemoryBtn" class="btn btn-primary" type="button">+ Yeni Date / Anı Ekle</button>
+              <button id="addFinaleBtn" class="btn btn-ghost" type="button">+ Final Sayfası Ekle</button>
+            </div>
+          </aside>
+
+          <div id="pageEditor" class="card"></div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Müzikler -->
+      <div id="tab-tracks" class="tab-panel" hidden>
+        <div class="card">
+          <div class="card-title"><span>🎵 Şarkı Kütüphanesi</span></div>
+          <p class="hint" style="margin-bottom:14px;">
+            Buraya eklediğin şarkıları <strong>Sayfalar &amp; Date</strong> sekmesinden istediğin sayfanın müziği olarak seçebilirsin. Sayfa geçince şarkılar yumuşakça birbirine karışır.
+          </p>
+          <input id="trackInput" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" multiple hidden>
+          <div id="trackDrop" class="dropzone">
+            <strong>🎶 Yeni Şarkı Yüklemek İçin Tıkla veya Sürükle (MP3 / M4A / WAV)</strong>
+          </div>
+          <div id="trackList" class="track-list"></div>
+        </div>
+      </div>
+
+      <!-- TAB 3: Zaman Makinesi & Genel Ayarlar -->
+      <div id="tab-settings" class="tab-panel" hidden>
+        <div class="card">
+          <div class="card-title"><span>⏳ Zaman Makinesi &amp; Karşılama Ayarları</span></div>
+          <div class="form-grid">
+            <div class="field">
+              <label>Site Başlığı (Tarayıcı Sekmesi)</label>
+              <input id="sSiteTitle" type="text">
+            </div>
+            <div class="field">
+              <label>Sevgilinin Adı ({isim} yerine yazılır)</label>
+              <input id="sHerName" type="text" placeholder="Örn: Eylül">
+            </div>
+            <div class="field">
+              <label>Giriş Üst Yazısı</label>
+              <input id="sIntroEyebrow" type="text">
+            </div>
+            <div class="field">
+              <label>Giriş Buton Yazısı</label>
+              <input id="sIntroButton" type="text">
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Zaman Makinesi Ana Sorusu</label>
+            <input id="sIntroQuestion" type="text">
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>Ses İpucu Yazısı</label>
+              <input id="sIntroHint" type="text">
+            </div>
+            <div class="field">
+              <label>İlk Tanışma Tarihi (Tünel Hedefi)</label>
+              <input id="sMeetDate" type="date">
+            </div>
+            <div class="field">
+              <label>Birliktelik Başlangıcı (Final Sayacı)</label>
+              <input id="sSinceDate" type="date">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>Tünel Yazısı 1</label>
+              <input id="sCap0" type="text">
+            </div>
+            <div class="field">
+              <label>Tünel Yazısı 2</label>
+              <input id="sCap1" type="text">
+            </div>
+            <div class="field">
+              <label>Tünel Yazısı 3 (Varış)</label>
+              <input id="sCap2" type="text">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label>Final Sayaç Başlığı</label>
+              <input id="sFinaleCounterLabel" type="text">
+            </div>
+            <div class="field">
+              <label>Baştan İzle Butonu</label>
+              <input id="sReplayLabel" type="text">
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:10px; background:rgba(0,0,0,0.28);">
+            <div class="card-title"><span>🔒 Yönetim Paneli PIN Kilidi (İsteğe Bağlı)</span></div>
+            <p id="pinStatusText" class="hint" style="margin-bottom:10px;"></p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+              <input id="sNewPin" type="password" placeholder="Yeni PIN (kaldırmak için boş bırak)" style="flex:1; min-width:200px; background:rgba(4,5,16,.65); border:1px solid rgba(255,255,255,.16); border-radius:10px; padding:9px 12px;">
+              <button id="savePinBtn" class="btn btn-ghost" type="button">PIN Güncelle</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: QR Kod & Yayınla -->
+      <div id="tab-qr" class="tab-panel" hidden>
+        <div class="card">
+          <div class="card-title"><span>🔳 QR Kod &amp; Siteyi Yayına Alma (Netlify)</span></div>
+          <div class="qr-grid">
+            <div class="qr-preview-box">
+              <canvas id="qrCardCanvas"></canvas>
+              <button id="downloadQrBtn" class="btn btn-primary" style="width:100%;" type="button">📥 QR Kartını İndir (PNG)</button>
+            </div>
+
+            <div>
+              <div class="field">
+                <label>QR Kodun Açacağı Canlı Site Adresi (URL)</label>
+                <input id="qrUrlInput" type="url" placeholder="https://gozlerinden-dogum-gunu.netlify.app">
+              </div>
+              <div class="form-grid">
+                <div class="field">
+                  <label>QR Kart Üst Başlığı</label>
+                  <input id="qrCardTitle" type="text" value="ZAMAN MAKİNESİ ⏳">
+                </div>
+                <div class="field">
+                  <label>QR Kart Alt Notu</label>
+                  <input id="qrCardSub" type="text" value="Kamerayı okut ve sesi aç 🎧">
+                </div>
+              </div>
+
+              <div class="card" style="margin-top:12px; background:rgba(255,211,110,0.06); border-color:rgba(255,211,110,0.3);">
+                <div class="card-title"><span>📦 Sevgilinin Telefonu İçin Yayına Hazır Paket</span></div>
+                <p class="hint" style="margin-bottom:12px;">
+                  Panelde eklediğin fotoğraflar ve yazılar önce tarayıcında taslak olarak tutulur. Tüm düzenlemelerini bitirdiğinde aşağıdaki butona basarak <strong>tam site paketini (.zip)</strong> indirip Netlify'a sürükle-bırak yapabilirsin; böylece QR kodu okutan herkes senin yüklediğin son fotoğrafları ve şarkıları görür.
+                </p>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                  <button id="downloadZipBtn" class="btn btn-primary" type="button">📦 Tam Site Paketini İndir (.zip)</button>
+                  <button id="downloadJsonBtn" class="btn btn-ghost" type="button">📄 Sadece content.json İndir</button>
+                  <button id="resetDraftBtn" class="btn btn-danger" type="button">🔄 Taslağı Sıfırla</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sağ: Canlı Telefon Önizlemesi -->
+    <aside id="previewPane" class="preview-pane">
+      <div class="preview-bar">
+        <button id="previewIntroBtn" class="btn btn-ghost btn-sm" type="button">⏳ Zaman Makinesi</button>
+        <button id="previewPageBtn" class="btn btn-ghost btn-sm" type="button">📖 Seçili Sayfa</button>
+        <button id="closeMobilePreviewBtn" class="btn btn-danger btn-sm" type="button" style="display:none;">Kapat</button>
+      </div>
+      <div class="phone-frame">
+        <iframe id="previewFrame" title="Canlı Mobil Önizleme"></iframe>
+      </div>
+      <p class="hint" style="text-align:center;">Seçili sayfanın mobildeki canlı görünümü</p>
+    </aside>
+  </main>
+
+  <button id="mobilePreviewFab" class="mobile-preview-fab" type="button">📱 Önizle</button>
+  <div id="toast" class="toast"></div>
+
+  <script src="js/vendor/qrcode.js"></script>
+  <script src="js/zip.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

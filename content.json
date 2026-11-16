@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "settings": {
+    "siteTitle": "Zaman Makinesi",
+    "introEyebrow": "Sana özel bir yolculuk",
+    "introQuestion": "Kendini ilk tanıştığımız güne götürmeye hazır mısın?",
+    "introButton": "Hazırım",
+    "introHint": "Sesi açmayı unutma",
+    "meetDate": "",
+    "sinceDate": "",
+    "herName": "",
+    "journeyCaptions": ["Zamanı geri sarıyoruz…", "Biraz daha…", "Geldik"],
+    "finaleCounterLabel": "Birlikte geçirdiğimiz zaman",
+    "replayLabel": "Baştan yaşa",
+    "pinHash": ""
+  },
+  "tracks": [
+    {
+      "id": "t-empire",
+      "name": "Empire of the Sun (Reels klibi)",
+      "file": "media/tracks/empire-of-the-sun.m4a"
+    }
+  ],
+  "pages": [
+    {
+      "id": "p-ilk-date",
+      "type": "memory",
+      "date": "",
+      "dateLabel": "İlk Date",
+      "title": "İlk Date",
+      "text": "Seni ilk gördüğüm an zaman bir an durdu. Kalbim o kadar hızlı atıyordu ki sesini sana duyuracağım diye korktum. Şimdi dönüp bakınca, hayatımın en güzel hikâyesinin tam orada başladığını görüyorum.\n\n(Bu yazıyı yönetim panelinden kendi anınla değiştir.)",
+      "photos": [],
+      "trackId": "t-empire",
+      "musicStart": 0,
+      "palette": "golden",
+      "particles": "pollen",
+      "layout": "polaroid"
+    },
+    {
+      "id": "p-ikinci",
+      "type": "memory",
+      "date": "",
+      "dateLabel": "Bir sonraki anımız",
+      "title": "Yeni bir sayfa",
+      "text": "Buraya başka bir date’imizi, gittiğimiz bir yeri ya da unutamadığımız bir anı yazabilirsin. Yönetim panelinden sayfa ekleyip çıkarabilir, her sayfaya ayrı fotoğraf ve şarkı seçebilirsin.",
+      "photos": [],
+      "trackId": "",
+      "musicStart": 0,
+      "palette": "sunset",
+      "particles": "leaves",
+      "layout": "polaroid"
+    },
+    {
+      "id": "p-final",
+      "type": "finale",
+      "date": "",
+      "dateLabel": "Bugün",
+      "title": "İyi ki doğdun sevgilim",
+      "text": "Seninle geçen her gün hayatımın en güzel hediyesi. Nice mutlu, sağlıklı ve sevgi dolu yıllara.\n\nSeni çok seviyorum.",
+      "photos": [
+        { "src": "media/photos/couple.jpg", "caption": "Biz ❤" }
+      ],
+      "trackId": "",
+      "musicStart": 0,
+      "palette": "night",
+      "particles": "fireflies",
+      "layout": "polaroid",
+      "showCounter": true
+    }
+  ]
+}
