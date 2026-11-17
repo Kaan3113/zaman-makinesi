@@ -607,6 +607,90 @@
     c.fillText(url, W / 2, 760, W - 90);
   }
 
+  async function uint8ToBase64(bytes) {
+    const CHUNK = 0x8000;
+    let bin = '';
+    for (let i = 0; i < bytes.length; i += CHUNK) {
+      bin += String.fromCharCode.apply(null, bytes.subarray(i, i + CHUNK));
+    }
+    return btoa(bin);
+  }
+
+  async function ghPutFile(repo, token, path, bytes, message) {
+    const apiUrl = 'https://api.github.com/repos/' + repo + '/contents/' + path;
+    const headers = {
+      'Authorization': 'Bearer ' + token,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    };
+    let sha = undefined;
+    try {
+      const check = await fetch(apiUrl + '?ref=main&_=' + Date.now(), { headers });
+      if (check.ok) {
+        const info = await check.json();
+        sha = info.sha;
+      }
+    } catch (e) {}
+
+    const body = {
+      message: message || ('Update ' + path),
+      content: await uint8ToBase64(bytes),
+      branch: 'main'
+    };
+    if (sha) body.sha = sha;
+
+    const res = await fetch(apiUrl, { method: 'PUT', headers, body: JSON.stringify(body) });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(path + ': ' + (err.message || res.status));
+    }
+  }
+
+  async function publishToGitHub() {
+    const repo = ($('ghRepoInput').value || 'Kaan3113/zaman-makinesi').trim();
+    const token = ($('ghTokenInput').value || '').trim();
+    const status = $('ghPublishStatus');
+    if (!token) {
+      toast('Önce GitHub Token girmelisin');
+      return;
+    }
+    localStorage.setItem('zm-gh-repo', repo);
+    localStorage.setItem('zm-gh-token', token);
+
+    const btn = $('publishGithubBtn');
+    btn.disabled = true;
+    status.textContent = 'Hazırlanıyor…';
+
+    try {
+      // 1) Sadece IndexedDB taslağında yeni eklenmiş medya dosyalarını yükle
+      const mediaList = Store.mediaPaths(content);
+      let uploadedCount = 0;
+      for (const mPath of mediaList) {
+        if (/^(blob:|data:|https?:)/.test(mPath)) continue;
+        const blob = await Store.getMediaBlob(mPath);
+        if (blob) {
+          uploadedCount++;
+          status.textContent = `Medya yükleniyor (${uploadedCount}): ${mPath}...`;
+          await ghPutFile(repo, token, mPath, new Uint8Array(await blob.arrayBuffer()), 'Upload ' + mPath);
+        }
+      }
+
+      // 2) Güncel content.json'u yükle
+      status.textContent = 'content.json kaydediliyor...';
+      const jsonBytes = new TextEncoder().encode(JSON.stringify(content, null, 2));
+      await ghPutFile(repo, token, 'content.json', jsonBytes, 'Update content.json from Admin Panel');
+
+      status.textContent = '✓ Yayınlandı! 30-60 sn içinde tüm cihazlarda görünür.';
+      toast('GitHub\'a başarıyla yayınlandı!');
+    } catch (err) {
+      console.error(err);
+      status.textContent = 'Hata: ' + err.message;
+      toast('Yayınlama hatası: ' + err.message);
+    } finally {
+      btn.disabled = false;
+    }
+  }
+
   async function downloadFullZip() {
     const btn = $('downloadZipBtn');
     const orig = btn.textContent;
@@ -766,6 +850,11 @@
 
     $('mobilePreviewFab').onclick = () => $('previewPane').classList.add('mobile-open');
     $('closeMobilePreviewBtn').onclick = () => $('previewPane').classList.remove('mobile-open');
+
+    // GitHub Publish actions
+    $('ghRepoInput').value = localStorage.getItem('zm-gh-repo') || 'Kaan3113/zaman-makinesi';
+    $('ghTokenInput').value = localStorage.getItem('zm-gh-token') || '';
+    $('publishGithubBtn').onclick = publishToGitHub;
 
     // QR & Export actions
     $('qrUrlInput').value = localStorage.getItem('zm-qr-url') || 'https://kaan3113.github.io/zaman-makinesi/';

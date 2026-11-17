@@ -422,6 +422,15 @@
     World.init($('world')); FX.init($('fx'));
     TimeMachine.mount($('tmStage'));
     applySettings(); bind();
+    Music.setOnBlocked(() => {
+      const pill = $('soundPill');
+      pill.hidden = false;
+      pill.onclick = () => {
+        Music.unlock();
+        applyMusic(Math.max(0, idx));
+        pill.hidden = true;
+      };
+    });
     if (START_PAGE >= 0) await quickStart(clamp(START_PAGE, 0, pages.length - 1));
     else { showIntro(); if (AUTO) setTimeout(startJourney, 800); }
   }
