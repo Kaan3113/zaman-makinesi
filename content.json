@@ -84,6 +84,44 @@
       "layout": "polaroid"
     },
     {
+      "id": "p-mwknjv4u-jw8m",
+      "type": "memory",
+      "date": "",
+      "dateLabel": "🤍",
+      "title": "",
+      "text": "Seninle tanışmazsam o gün saatlerce konuşmasak ne olurdu diye düşünmek veya seninle tanışmadan önceki hayatımı düşünmek bile istemiyorum çünkü senin hayatıma girişin benim için dönüm noktası olduğuna inanıyorum sanki hayatıma girdiğinde bütün her yer çiçek açmış gibi ne kadar kavga etsekte ettiğimiz kavgalar hoşuma gidiyor sabaha kadar seninle film dizi izlemek senin galerinde gezmek bunları bırak sadece telefonun ucunda senin olduğunu bilmek bile benim hoşuma gidiyor bana güven veriyor sevgilim🤍",
+      "photos": [
+        {
+          "src": "media/photos/img-mwknmiia-0y29.jpg",
+          "caption": "İyiki Hayatımdasın"
+        }
+      ],
+      "trackId": "",
+      "musicStart": 0,
+      "palette": "sunset",
+      "particles": "leaves",
+      "layout": "polaroid"
+    },
+    {
+      "id": "p-mwknwt51-18sk",
+      "type": "memory",
+      "date": "",
+      "dateLabel": "🤍",
+      "title": "Nikah",
+      "text": "Bu pozun aynısını bi gün nikah dairesinde vereceğimizi biliyorum ve buna inanıyorum bu yüzden elimden gelen gelmeyen herşeyi vermeye hazırım.Seninle evlenip hayalini kurduğun o ev için çalışıp çabalayıp ne gerekiyorsa yapacağım sevgilim birlikte o evde triwilit izleme dileğiyle.",
+      "photos": [
+        {
+          "src": "media/photos/img-mwknz65t-yq91.jpg",
+          "caption": "Tek taş"
+        }
+      ],
+      "trackId": "",
+      "musicStart": 0,
+      "palette": "sunset",
+      "particles": "leaves",
+      "layout": "polaroid"
+    },
+    {
       "id": "p-final",
       "type": "finale",
       "date": "",
@@ -98,7 +136,7 @@
       ],
       "trackId": "",
       "musicStart": 0,
-      "palette": "night",
+      "palette": "autumn",
       "particles": "fireflies",
       "layout": "polaroid",
       "showCounter": true
