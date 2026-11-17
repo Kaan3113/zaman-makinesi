@@ -8,17 +8,21 @@
     "introHint": "Sesi açmayı unutma",
     "meetDate": "",
     "sinceDate": "",
-    "herName": "",
-    "journeyCaptions": ["Zamanı geri sarıyoruz…", "Biraz daha…", "Geldik"],
+    "herName": "Yağmur",
+    "journeyCaptions": [
+      "Zamanı geri sarıyoruz…",
+      "Biraz daha…",
+      "Geldik"
+    ],
     "finaleCounterLabel": "Birlikte geçirdiğimiz zaman",
     "replayLabel": "Baştan yaşa",
     "pinHash": ""
   },
   "tracks": [
     {
-      "id": "t-empire",
-      "name": "Empire of the Sun (Reels klibi)",
-      "file": "media/tracks/empire-of-the-sun.m4a"
+      "id": "t-mwkhv6eq-975p",
+      "name": "ssstik.io_1794872101408",
+      "file": "media/tracks/t-mwkhv6eq-975p.mp3"
     }
   ],
   "pages": [
@@ -30,10 +34,10 @@
       "title": "İlk Date",
       "text": "Seni ilk gördüğüm an zaman bir an durdu. Kalbim o kadar hızlı atıyordu ki sesini sana duyuracağım diye korktum. Şimdi dönüp bakınca, hayatımın en güzel hikâyesinin tam orada başladığını görüyorum.\n\n(Bu yazıyı yönetim panelinden kendi anınla değiştir.)",
       "photos": [],
-      "trackId": "t-empire",
+      "trackId": "t-mwkhv6eq-975p",
       "musicStart": 0,
-      "palette": "golden",
-      "particles": "pollen",
+      "palette": "sunset",
+      "particles": "leaves",
       "layout": "polaroid"
     },
     {
@@ -58,7 +62,10 @@
       "title": "İyi ki doğdun sevgilim",
       "text": "Seninle geçen her gün hayatımın en güzel hediyesi. Nice mutlu, sağlıklı ve sevgi dolu yıllara.\n\nSeni çok seviyorum.",
       "photos": [
-        { "src": "media/photos/couple.jpg", "caption": "Biz ❤" }
+        {
+          "src": "media/photos/couple.jpg",
+          "caption": "Biz ❤"
+        }
       ],
       "trackId": "",
       "musicStart": 0,
