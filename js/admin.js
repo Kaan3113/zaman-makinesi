@@ -651,9 +651,13 @@
     const token = ($('ghTokenInput').value || '').trim();
     const status = $('ghPublishStatus');
     if (!token) {
+      status.style.color = '#fca5a5';
+      status.textContent = '⚠ Önce yukarıdaki kutuya GitHub Token yapıştırmalısın! ("🔑 Hızlı Token Al" ile 10 sn\'de alabilirsin)';
+      $('ghTokenInput').focus();
       toast('Önce GitHub Token girmelisin');
       return;
     }
+    status.style.color = '#ffd36e';
     localStorage.setItem('zm-gh-repo', repo);
     localStorage.setItem('zm-gh-token', token);
 
@@ -680,10 +684,12 @@
       const jsonBytes = new TextEncoder().encode(JSON.stringify(content, null, 2));
       await ghPutFile(repo, token, 'content.json', jsonBytes, 'Update content.json from Admin Panel');
 
-      status.textContent = '✓ Yayınlandı! 30-60 sn içinde tüm cihazlarda görünür.';
+      status.style.color = '#34d399';
+      status.innerHTML = '✓ Yayınlandı! 30-60 sn içinde tüm cihazlarda görünür. <a href="https://kaan3113.github.io/zaman-makinesi/" target="_blank" style="color:#ffd36e;text-decoration:underline;">Siteyi Aç</a>';
       toast('GitHub\'a başarıyla yayınlandı!');
     } catch (err) {
       console.error(err);
+      status.style.color = '#fca5a5';
       status.textContent = 'Hata: ' + err.message;
       toast('Yayınlama hatası: ' + err.message);
     } finally {
