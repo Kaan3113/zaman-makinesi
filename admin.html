@@ -191,13 +191,34 @@
                 </div>
               </div>
 
+              <div class="card" style="margin-top:12px; background:rgba(52,211,153,0.08); border-color:rgba(52,211,153,0.35);">
+                <div class="card-title"><span>☁️ GitHub'a Doğrudan Yayınla (Her Cihazda Görünsün)</span></div>
+                <p class="hint" style="margin-bottom:10px;">
+                  Telefondan veya bilgisayardan yaptığın fotoğraf, yazı ve müzik değişikliklerinin <strong>tüm cihazlarda</strong> görünmesi için GitHub Token'ını bir kez girip doğrudan yayınlayabilirsin (Token sadece bu cihazda saklanır, siteye yüklenmez).
+                </p>
+                <div class="form-grid">
+                  <div class="field">
+                    <label>GitHub Depo (kullanıcı/depo)</label>
+                    <input id="ghRepoInput" type="text" placeholder="Kaan3113/zaman-makinesi">
+                  </div>
+                  <div class="field">
+                    <label>GitHub Personal Access Token</label>
+                    <input id="ghTokenInput" type="password" placeholder="ghp_... veya github_pat_...">
+                  </div>
+                </div>
+                <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                  <button id="publishGithubBtn" class="btn btn-primary" type="button">☁️ GitHub'a Kaydet &amp; Yayınla</button>
+                  <span id="ghPublishStatus" class="hint"></span>
+                </div>
+              </div>
+
               <div class="card" style="margin-top:12px; background:rgba(255,211,110,0.06); border-color:rgba(255,211,110,0.3);">
-                <div class="card-title"><span>📦 Sevgilinin Telefonu İçin Yayına Hazır Paket</span></div>
+                <div class="card-title"><span>📦 Manuel Paket İndir (.zip)</span></div>
                 <p class="hint" style="margin-bottom:12px;">
-                  Panelde eklediğin fotoğraflar ve yazılar önce tarayıcında taslak olarak tutulur. Tüm düzenlemelerini bitirdiğinde aşağıdaki butona basarak <strong>tam site paketini (.zip)</strong> indirip Netlify'a sürükle-bırak yapabilirsin; böylece QR kodu okutan herkes senin yüklediğin son fotoğrafları ve şarkıları görür.
+                  İstersen tüm siteyi tek paket olarak indirip başka bir yere yükleyebilirsin.
                 </p>
                 <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                  <button id="downloadZipBtn" class="btn btn-primary" type="button">📦 Tam Site Paketini İndir (.zip)</button>
+                  <button id="downloadZipBtn" class="btn btn-ghost" type="button">📦 Tam Site Paketini İndir (.zip)</button>
                   <button id="downloadJsonBtn" class="btn btn-ghost" type="button">📄 Sadece content.json İndir</button>
                   <button id="resetDraftBtn" class="btn btn-danger" type="button">🔄 Taslağı Sıfırla</button>
                 </div>
