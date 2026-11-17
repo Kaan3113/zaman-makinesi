@@ -8,7 +8,7 @@
     "introHint": "Sesi açmayı unutma",
     "meetDate": "",
     "sinceDate": "",
-    "herName": "Yağmur",
+    "herName": "",
     "journeyCaptions": [
       "Zamanı geri sarıyoruz…",
       "Biraz daha…",
@@ -20,24 +20,29 @@
   },
   "tracks": [
     {
-      "id": "t-mwkhv6eq-975p",
+      "id": "t-mwjxjzyu-w874",
       "name": "ssstik.io_1794872101408",
-      "file": "media/tracks/t-mwkhv6eq-975p.mp3"
+      "file": "media/tracks/t-mwjxjzyu-w874.mp3"
     }
   ],
   "pages": [
     {
       "id": "p-ilk-date",
       "type": "memory",
-      "date": "",
-      "dateLabel": "İlk Date",
-      "title": "İlk Date",
-      "text": "Seni ilk gördüğüm an zaman bir an durdu. Kalbim o kadar hızlı atıyordu ki sesini sana duyuracağım diye korktum. Şimdi dönüp bakınca, hayatımın en güzel hikâyesinin tam orada başladığını görüyorum.\n\n(Bu yazıyı yönetim panelinden kendi anınla değiştir.)",
-      "photos": [],
-      "trackId": "t-mwkhv6eq-975p",
-      "musicStart": 0,
-      "palette": "sunset",
-      "particles": "leaves",
+      "date": "2026-10-05",
+      "dateLabel": "First Date",
+      "title": "FAKE YA",
+      "text": "İlk buluştuğumuz gün Kadıköy'e gelene kadar içimde hiçbir şekilde senin gerçek olduğuna dair bi inancım yoktu oraya gittiğimde senin liseden arkadaşım olduğuna yemin edebilirdim ama seni o piramidin altında otururken gördüğümde ilk bi 5 dakika seni izledim abi dedim bi kız ancak bu kadar güzel olabilir.Buluştuktan sonra şaklabanlık yapmaya başladım herzamanki gibi dedim zaten eve gider gitmez yapacağı ilk şey beni engellemek olacak o yüzden içimden nasıl geliyosa öyle davranmıştım.",
+      "photos": [
+        {
+          "src": "media/photos/img-mwji9nbn-3uz1.jpg",
+          "caption": ""
+        }
+      ],
+      "trackId": "",
+      "musicStart": 1,
+      "palette": "golden",
+      "particles": "pollen",
       "layout": "polaroid"
     },
     {
@@ -45,12 +50,17 @@
       "type": "memory",
       "date": "",
       "dateLabel": "Bir sonraki anımız",
-      "title": "Yeni bir sayfa",
-      "text": "Buraya başka bir date’imizi, gittiğimiz bir yeri ya da unutamadığımız bir anı yazabilirsin. Yönetim panelinden sayfa ekleyip çıkarabilir, her sayfaya ayrı fotoğraf ve şarkı seçebilirsin.",
-      "photos": [],
+      "title": "Stitch ve Angel",
+      "text": "Burda iki beceriksiz bi tuval yapmaya çalışıyor ama maalesef eline yüzüne bulaştırıyor(ciddi anlamda).Onun dışında mükemmel günlerden sadece biriydi felaket eğlenmiştik üstüne üstlük Yağmur'umun ilk defa bugün elinden yemek yemiştim felaket iyiydi",
+      "photos": [
+        {
+          "src": "media/photos/img-mwjw6ui2-q37g.jpg",
+          "caption": ""
+        }
+      ],
       "trackId": "",
       "musicStart": 0,
-      "palette": "sunset",
+      "palette": "sakura",
       "particles": "leaves",
       "layout": "polaroid"
     },
